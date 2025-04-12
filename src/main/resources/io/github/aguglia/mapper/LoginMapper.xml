@@ -5,12 +5,13 @@
 <mapper namespace="io.github.aguglia.mapper.LoginMapper">
 	<select id="getLoginUser" parameterType="java.lang.String" resultType="io.github.aguglia.model.LoginModel">
 		SELECT
+			ユーザ管理id AS userID,
 			ユーザ名 AS username,
 			メアド AS email,
 			パスワード AS password
 		FROM
 			t_users
 		WHERE
-			ユーザ名 = #{id, jdbcType=VARCHAR}
+			メアド = #{id, jdbcType=VARCHAR}
 	</select>
 </mapper>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.github.aguglia.mapper.RegisterMapper">
+	<insert id="RegisterUser" parameterType="io.github.aguglia.model.LoginModel">
+        INSERT INTO t_users (
+            ユーザ名,
+            パスワード,
+            メアド
+        ) VALUES (
+            #{username},
+            #{password},
+            #{email}
+        )
+	</insert>
+	<select id="getRegisterUser" parameterType="java.lang.String" resultType="io.github.aguglia.model.LoginModel">
+		SELECT
+			ユーザ名 AS username,
+			メアド AS email,
+			パスワード AS password
+		FROM
+			t_users
+		WHERE
+			メアド = #{mail, jdbcType=VARCHAR}
+	</select>
+</mapper>

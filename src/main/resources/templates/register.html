@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th=“http://www.thymeleaf.org”>
 
 <head>
 	<meta charset="UTF-8">
@@ -9,22 +9,41 @@
 
 <body class="bg-gray-100 h-screen flex items-center justify-center">
 	
-	<form th:action="@{/register}" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-		<div>
-			<label for="username">ユーザー名:</label>
-		    <input type="text" id="username" name="username"/>
+	<form th:action="@{/register}" method="POST" th:object="${registermodel}" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+		<h1 class="text-lg font-bold">新規登録</h1>
+		<div th:if="${errorMessage ne null}" th:text="${errorMessage}">
 		</div>
-		<div>
-		    <label for="password">パスワード:</label>
-		    <input type="password" id="password" name="password"/>
-		</div>
-		<div>
-		    <label for="email">メールアドレス:</label>
-		    <input type="email" id="email" name="email"/>
-		</div>
-		<div>
-		    <button type="submit">登録</button>
-		</div>
-		<p><a th:href="@{/login}">ログイン画面へ戻る</a></p>
+		<span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" style="color: red;"></span>
+	    <div class="mb-4">
+	        <label for="username" class="block text-gray-700 text-sm font-bold mb-2">ユーザー名:</label>
+	        <input type="text" id="username" required th:field="*{username}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+	    </div>
+	    <div class="mb-4">
+	        <label for="password" class="block text-gray-700 text-sm font-bold mb-2">パスワード:</label>
+	        <input type="password" id="password" required th:field="*{password}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+	    </div>
+	    <div class="mb-4">
+	        <label for="confirmPassword" class="block text-gray-700 text-sm font-bold mb-2">確認用パスワード:</label>
+	        <input type="password" id="confirmPassword" required th:field="*{confirmPassword}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+	    </div>
+	    <div class="mb-6">
+	        <label for="email" class="block text-gray-700 text-sm font-bold mb-2">メールアドレス:</label>
+	        <input type="email" id="email" required th:field="*{email}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+	    </div>
+		<br>
+	    <div class="flex items-center justify-between">
+	        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+	            登録
+	        </button>
+	    </div>
+	    <p class="text-center mt-4">
+	        <a th:href="@{/login}" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
+	            ログイン画面へ戻る
+	        </a>
+	    </p>
 	</form>
 </body>
+
+<script>
+	
+</script>

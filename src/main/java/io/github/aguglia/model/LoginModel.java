@@ -9,6 +9,7 @@ import lombok.Data;
 
 @Data
 public class LoginModel implements UserDetails {
+	String userID;
 	String username;
 	String password;
 	String email;
