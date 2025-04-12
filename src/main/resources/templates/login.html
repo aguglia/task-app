@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>ログイン</title>
+	<link rel="stylesheet" th:href="@{/css/output.css}">
+</head>
+
+<body class="bg-gray-100 h-screen flex items-center justify-center">
+	
+	
+<div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+	<form th:action="@{/login}" method="POST" >
+	    <ul class="space-y-4">
+			<h1 class="text-lg font-bold">ログイン</h1>
+			<div th:if="${param.error}">
+				Invalid username and password.
+			</div>
+			<div th:if="${param.logout}">
+				You have been logged out.
+			</div>
+	        <li>
+	            <label class="block text-gray-700 text-sm font-bold mb-2">
+	                ログインID
+	                <input type="text" name="username" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+	            </label>
+	        </li>
+	        <li>
+	            <label class="block text-gray-700 text-sm font-bold mb-2">
+	                パスワード
+	                <input type="password" name="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+	            </label>
+	        </li>
+	        <li>
+	            <input id="button" type="submit" value="ログイン" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" />
+	        </li>
+	    </ul>
+
+	</form>
+	<div class="mt-4 text-center">
+	    <p class="text-sm text-gray-600">
+	        アカウントをお持ちでない方はこちら:
+	        <a th:href="@{/register}" class="text-blue-500 hover:underline">新規登録</a>
+	    </p>
+	</div>
+</div>
+
+</body>
+
+</html>

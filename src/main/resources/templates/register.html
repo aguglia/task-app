@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>ユーザ登録</title>
+	<link rel="stylesheet" th:href="@{/css/output.css}">
+</head>
+
+<body class="bg-gray-100 h-screen flex items-center justify-center">
+	
+	<form th:action="@{/register}" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+		<div>
+			<label for="username">ユーザー名:</label>
+		    <input type="text" id="username" name="username"/>
+		</div>
+		<div>
+		    <label for="password">パスワード:</label>
+		    <input type="password" id="password" name="password"/>
+		</div>
+		<div>
+		    <label for="email">メールアドレス:</label>
+		    <input type="email" id="email" name="email"/>
+		</div>
+		<div>
+		    <button type="submit">登録</button>
+		</div>
+		<p><a th:href="@{/login}">ログイン画面へ戻る</a></p>
+	</form>
+</body>

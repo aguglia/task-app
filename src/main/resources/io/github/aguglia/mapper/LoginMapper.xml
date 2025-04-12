@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.github.aguglia.mapper.LoginMapper">
+	<select id="getLoginUser" parameterType="java.lang.String" resultType="io.github.aguglia.model.LoginModel">
+		SELECT
+			ユーザ名 AS username,
+			メアド AS email,
+			パスワード AS password
+		FROM
+			t_users
+		WHERE
+			ユーザ名 = #{id, jdbcType=VARCHAR}
+	</select>
+</mapper>
