@@ -19,7 +19,8 @@ public class WebSecurityConfig {
 
 		http.formLogin((form) -> form
 						.loginPage("/login")
-						.permitAll())
+						.permitAll()
+						.failureUrl("/login?error")) // ログイン失敗後のリダイレクト先
 				.logout((logout) -> logout
 		                .logoutUrl("/logout")
 		                .logoutSuccessUrl("/login?logout")

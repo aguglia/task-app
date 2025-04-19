@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th=“http://www.thymeleaf.org”>
 
 <head>
 	<meta charset="UTF-8">
@@ -18,16 +18,14 @@
           <a href="#" class="block py-2 px-4 rounded hover:bg-gray-300">ポートフォリオ</a>
           <a href="#" class="block py-2 px-4 rounded hover:bg-gray-300">会社概要</a>
           <a href="#" class="block py-2 px-4 rounded hover:bg-gray-300">お問い合わせ</a>
-		  <form th:action="@{/logout}" method="post" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
-		  	<input type="submit" value="ログアウト" />
-		  </form>
+		  <a th:href="@{/login?logout}" class="block py-2 px-4 rounded hover:bg-gray-300">ログアウト</a>
         </nav>
       </div>
       <div class="text-sm text-gray-500">© 2023 Your Company</div>
     </div>
   </aside>
 
-  <div class="flex flex-col flex-1 md:pl-1/5">
+  <div class="flex flex-col flex-1 md:ml-[calc(100%/5)]">
     <header class="bg-white shadow md:hidden">
       <div class="flex items-center justify-between p-4">
         <button id="menu-button" class="focus:outline-none">
@@ -38,7 +36,7 @@
       </div>
     </header>
 
-    <main class="p-4">
+    <main class="p-4 ">
       <div class="bg-white rounded-md shadow p-6">
         <h2 class="text-xl font-bold mb-4">コンテンツ</h2>
         <p>ここにメインのコンテンツが入ります。</p>
@@ -61,9 +59,7 @@
             <a href="#" class="block py-2 px-4 rounded hover:bg-gray-300">ポートフォリオ</a>
             <a href="#" class="block py-2 px-4 rounded hover:bg-gray-300">会社概要</a>
             <a href="#" class="block py-2 px-4 rounded hover:bg-gray-300">お問い合わせ</a>
-			<form th:action="@{/logout}" method="post" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
-				<input type="submit" value="ログアウト" />
-			</form>
+			<a th:href="@{/login?logout}" class="block py-2 px-4 rounded hover:bg-gray-300">ログアウト</a>
           </nav>
         </div>
         <div class="text-sm text-gray-500">© 2023 Your Company</div>

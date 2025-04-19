@@ -13,7 +13,6 @@
 		<h1 class="text-lg font-bold">新規登録</h1>
 		<div th:if="${errorMessage ne null}" th:text="${errorMessage}">
 		</div>
-		<span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" style="color: red;"></span>
 	    <div class="mb-4">
 	        <label for="username" class="block text-gray-700 text-sm font-bold mb-2">ユーザー名:</label>
 	        <input type="text" id="username" required th:field="*{username}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>

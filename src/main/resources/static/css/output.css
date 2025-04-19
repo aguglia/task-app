@@ -866,6 +866,18 @@ video {
     bottom: 0px;
   }
 
+  .md\:ml-2 {
+    margin-left: 0.5rem;
+  }
+
+  .md\:ml-10 {
+    margin-left: 2.5rem;
+  }
+
+  .md\:ml-\[calc\(100\%\/5\)\] {
+    margin-left: calc(100% / 5);
+  }
+
   .md\:flex {
     display: flex;
   }
