@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th=“http://www.thymeleaf.org”>
+
+<head>
+	<meta charset="UTF-8">
+	<title>タスク画面</title>
+	<link rel="stylesheet" th:href="@{/css/output.css}">
+</head>
+
+<div class="flex h-screen bg-gray-100">
+	<aside class="hidden md:flex md:w-1/5 md:flex-col md:fixed md:inset-y-0 bg-gray-200">
+		<div class="flex flex-col justify-between h-full p-4">
+			<div>
+				<div class="font-bold text-lg mb-4">メニュー</div>
+				<nav class="space-y-2">
+					<a th:href="@{/}" class="block py-2 px-4 rounded hover:bg-gray-300">ホーム</a>
+					<a th:href="@{/task}" class="block py-2 px-4 rounded hover:bg-gray-300">タスク</a>
+					<a href="#" class="block py-2 px-4 rounded hover:bg-gray-300">ポートフォリオ</a>
+					<a href="#" class="block py-2 px-4 rounded hover:bg-gray-300">会社概要</a>
+					<a href="#" class="block py-2 px-4 rounded hover:bg-gray-300">お問い合わせ</a>
+					<a th:href="@{/login?logout}" class="block py-2 px-4 rounded hover:bg-gray-300">ログアウト</a>
+				</nav>
+			</div>
+			<div class="text-sm text-gray-500">© 2023 Your Company</div>
+		</div>
+	</aside>
+
+	<div class="flex flex-col flex-1 md:ml-[calc(100%/5)]">
+		<header class="bg-white shadow md:hidden">
+			<div class="flex items-center justify-between p-4">
+				<button id="menu-button" class="focus:outline-none">
+					<svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+						xmlns="http://www.w3.org/2000/svg">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+							d="M4 6h16M4 12h16M4 18h16"></path>
+					</svg>
+				</button>
+				<div class="font-bold text-lg">タイトル</div>
+				<div></div>
+			</div>
+		</header>
+
+		<main class="p-4 ">
+			<div class="bg-white rounded-md shadow p-6 mb-2">
+				<h2 class="text-xl font-bold mb-4">ここは天気とか日付、ユーザー情報等</h2>
+				<p>ここにメインのコンテンツが入ります。</p>
+				<p>ユーザー名: <span th:text="${username}"></span></p>
+				<p>タスク画面</p>
+			</div>
+			<div class="bg-white rounded-md shadow p-6 mb-2">
+				<h2 class="text-xl font-bold mb-4">直近タスク</h2>
+				<p>ここにメインのコンテンツが入ります。</p>
+				<p>第二要素</p>
+			</div>
+			<div class="bg-white rounded-md shadow p-6 mb-2">
+				<h2 class="text-xl font-bold mb-4">新規登録</h2>
+				<p>登録は名前、開始日、終了日、内容</p>
+				<form th:action="@{/task}" method="POST" th:object="${taskmodel}">
+					<div th:if="${errorMessage ne null}" th:text="${errorMessage}"></div>
+					<div class="flex items-center">
+						<label for="taskname" class="text-gray-700 text-sm font-bold mb-2 mr-2 w-32">タスク名:</label>
+						<input type="text" id="taskname" required th:field="*{taskname}"
+							class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+					</div>
+					<div class="flex items-center">
+						<label for="content" class="text-gray-700 text-sm font-bold mb-2 mr-2 w-32">内容:</label>
+						<input type="text" id="content" th:field="*{content}"
+							class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+					</div>
+					<div class="flex items-center">
+						<label for="startdate" class="text-gray-700 text-sm font-bold mb-2 mr-2 w-32">開始日:</label>
+						<input type="date" id="startdate" th:field="*{startdate}"
+							class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+					</div>
+					<div class="flex items-center">
+						<label for="deadlinedate" class="text-gray-700 text-sm font-bold mb-2 mr-2 w-32">終了日:</label>
+						<input type="date" id="deadlinedate" th:field="*{deadlinedate}"
+							class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+					</div>
+					<div class="flex items-center justify-between">
+						<button type="submit"
+							class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+							登録
+						</button>
+					</div>
+				</form>
+				<p>第三要素</p>
+			</div>
+			<div class="bg-white rounded-md shadow p-6 mb-2">
+				<h2 class="text-xl font-bold mb-4">タスク一覧</h2>
+				<p>ここにメインのコンテンツが入ります。</p>
+				<p>第四要素</p>
+			</div>
+		</main>
+
+		<div id="mobile-menu"
+			class="fixed inset-y-0 left-0 w-1/2 bg-gray-200 z-10 transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+			<div class="flex flex-col justify-between h-full p-4">
+				<div>
+					<div class="flex items-center justify-between mb-4">
+						<div class="font-bold text-lg">メニュー</div>
+						<button id="close-button" class="focus:outline-none">
+							<svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+								xmlns="http://www.w3.org/2000/svg">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+									d="M6 18L18 6M6 6l12 12"></path>
+							</svg>
+						</button>
+					</div>
+					<nav class="space-y-2">
+						<a href="#" class="block py-2 px-4 rounded hover:bg-gray-300">ホーム</a>
+						<a href="#" class="block py-2 px-4 rounded hover:bg-gray-300">サービス</a>
+						<a href="#" class="block py-2 px-4 rounded hover:bg-gray-300">ポートフォリオ</a>
+						<a href="#" class="block py-2 px-4 rounded hover:bg-gray-300">会社概要</a>
+						<a href="#" class="block py-2 px-4 rounded hover:bg-gray-300">お問い合わせ</a>
+						<a th:href="@{/login?logout}" class="block py-2 px-4 rounded hover:bg-gray-300">ログアウト</a>
+					</nav>
+				</div>
+				<div class="text-sm text-gray-500">© 2023 Your Company</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	const menuButton = document.getElementById('menu-button');
+	const closeButton = document.getElementById('close-button');
+	const mobileMenu = document.getElementById('mobile-menu');
+
+	menuButton.addEventListener('click', () => {
+		mobileMenu.classList.remove('-translate-x-full');
+	});
+
+	closeButton.addEventListener('click', () => {
+		mobileMenu.classList.add('-translate-x-full');
+	});
+</script>

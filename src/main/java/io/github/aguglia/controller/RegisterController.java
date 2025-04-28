@@ -34,6 +34,7 @@ public class RegisterController {
 		String errorMessage = registerService.register(registermodel);
 		if (errorMessage != null) {
 			model.addAttribute("errorMessage", errorMessage);
+			return "register";
 		}
     	redirectAttributes.addFlashAttribute("registerSuccessMessage", "Registration successful! Please log in.");
     	return "redirect:/login"; // 登録成功後、ログイン画面へリダイレクト

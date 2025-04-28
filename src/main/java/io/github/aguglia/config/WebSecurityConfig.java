@@ -18,13 +18,13 @@ public class WebSecurityConfig {
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
 		http.formLogin((form) -> form
-						.loginPage("/login")
-						.permitAll()
-						.failureUrl("/login?error")) // ログイン失敗後のリダイレクト先
+				.loginPage("/login")
+				.permitAll()
+				.failureUrl("/login?error")) // ログイン失敗後のリダイレクト先
 				.logout((logout) -> logout
-		                .logoutUrl("/logout")
-		                .logoutSuccessUrl("/login?logout")
-		                .permitAll())
+						.logoutUrl("/logout")
+						.logoutSuccessUrl("/login?logout")
+						.permitAll())
 				.authorizeHttpRequests((requests) -> requests
 						.requestMatchers(PathRequest.toStaticResources().atCommonLocations())
 						.permitAll()
@@ -34,10 +34,9 @@ public class WebSecurityConfig {
 		return http.build();
 	}
 
-	 @Bean
-	 public PasswordEncoder passwordEncoder(){
-	     //return NoOpPasswordEncoder.getInstance();
-		 return new BCryptPasswordEncoder();
-	 }
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		//return NoOpPasswordEncoder.getInstance();
+		return new BCryptPasswordEncoder();
+	}
 }
-

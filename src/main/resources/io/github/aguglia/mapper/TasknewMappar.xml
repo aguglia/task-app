@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.github.aguglia.mapper.TaskNewMapper">
+	<insert id="TaskNew" parameterType="io.github.aguglia.model.TaskModel">
+        INSERT INTO t_tasks (
+            タスク名,
+            ユーザ管理id,
+            開始日,
+            期日,
+            内容
+        ) VALUES (
+            #{taskname},
+            #{UserID},
+            #{startdate},
+            #{deadlinedate},
+            #{content}
+        )
+	</insert>
+</mapper>
