@@ -18,7 +18,7 @@ ON UPDATE CASCADE;
 CREATE OR REPLACE FUNCTION generate_small_id()
 RETURNS TRIGGER AS $$
 BEGIN
-    NEW.ユーザ管理ID := 'SMALL_' || LPAD(NEW.管理通番::TEXT, 6, '0');
+    NEW.小タスクID := 'SMALL_' || LPAD(NEW.管理通番::TEXT, 6, '0');
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
