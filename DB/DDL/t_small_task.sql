@@ -3,8 +3,8 @@ CREATE TABLE t_small_task (
     小タスクID CHAR(12) UNIQUE,
     タスク管理ID CHAR(12),
     内容 VARCHAR(20),
-    完了フラグ BOOLEAN,
-    削除フラグ BOOLEAN
+    完了フラグ BOOLEAN DEFAULT FALSE,
+    削除フラグ BOOLEAN DEFAULT FALSE
 );
 
 ALTER TABLE t_small_task

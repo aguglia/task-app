@@ -16,14 +16,14 @@ public class TaskNewServiceImpl implements TaskNewService {
 	@Override
 	public String TaskNew(TaskModel taskmodel) {
 		// TODO 自動生成されたメソッド・スタブ
-		//try {
+		try {
 			tasknewMapper.TaskNew(taskmodel);
 			System.out.println("完了");
 			return "登録完了"; // 登録成功後、ログイン画面へリダイレクト
-		//} catch (Exception e) {
-		//	System.out.println("失敗");
-		//	return "登録処理中にエラーが発生しました。";
-		//}
+		} catch (Exception e) {
+			System.out.println("失敗");
+			return "登録処理中にエラーが発生しました。";
+		}
 	}
 
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.github.aguglia.mapper.TaskRecentlyMapper">
+	<select id="taskRecently" parameterType="java.lang.String"
+		resultType="io.github.aguglia.model.TaskModel">
+		SELECT
+			タスク管理id AS ID,
+			タスク名 AS taskname,
+			開始日 AS startdate,
+			期日 AS deadlinedate,
+			かかる時間 AS Requiredtime,
+			内容 AS content,
+			優先度 AS priorityID
+		FROM
+			t_tasks
+		WHERE
+			完了フラグ = FALSE
+			AND 削除フラグ = FALSE
+			AND ユーザ管理id = #{userID, jdbcType=VARCHAR}
+			AND 期日 >= CURRENT_DATE
+		ORDER BY
+			期日 ASC
+		LIMIT 2
+	</select>
+</mapper>

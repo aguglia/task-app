@@ -9,8 +9,8 @@ CREATE TABLE t_tasks (
     内容 TEXT,
     コメント TEXT,
     優先度 CHAR(2),
-    完了フラグ BOOLEAN,
-    削除フラグ BOOLEAN
+    完了フラグ BOOLEAN DEFAULT FALSE,
+    削除フラグ BOOLEAN DEFAULT FALSE
 );
 
 ALTER TABLE t_tasks
