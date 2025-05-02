@@ -30,6 +30,7 @@ public class TaskmainController {
 		model.addAttribute("username", username);
 		TaskModel taskmodel = new TaskModel();
 		model.addAttribute("taskmodel", taskmodel);
+		model.addAttribute("taskdetail", taskmodel);
 		Object userbuf = authentication.getPrincipal();
 		List<TaskModel> tasksmodel = null;
 		if (userbuf instanceof LoginModel user) {

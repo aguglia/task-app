@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th=“http://www.thymeleaf.org”>
+<script src="/javascript/taskdetail.js"></script>
 
 <head>
 	<meta charset="UTF-8">
@@ -49,7 +50,7 @@
 			</div>
 			<div class="bg-white rounded-md shadow p-6 mb-2">
 				<h2 class="text-xl font-bold mb-4">直近タスク</h2>
-				<div th:replace="~{taskrecently :: recently}"></div>
+				<div th:replace="~{flagments/taskrecently :: recently}"></div>
 				<p>ここにメインのコンテンツが入ります。</p>
 				<p>第二要素</p>
 			</div>
@@ -89,6 +90,9 @@
 			</div>
 			<div class="bg-white rounded-md shadow p-6 mb-2">
 				<h2 class="text-xl font-bold mb-4">タスク一覧</h2>
+				<div id="flagment-area">
+					<div th:replace="~{flagments/taskdetail :: taskDetails}"></div>
+				</div>
 				<p>ここにメインのコンテンツが入ります。</p>
 				<p>第四要素</p>
 			</div>
