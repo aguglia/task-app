@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.github.aguglia.mapper.SharedUserMapper">
+	<select id="SharedUserID" parameterType="java.lang.String"
+		resultType="java.lang.String">
+		SELECT
+			共有ユーザID
+		FROM
+			t_shared_task
+		WHERE
+			タスク管理id = #{taskID, jdbcType=VARCHAR}
+	</select>
+	<select id="SharedUserName" parameterType="java.lang.String"
+		resultType="java.lang.String">
+		SELECT
+			ユーザ名
+		FROM
+			t_users
+		WHERE
+			ユーザ管理ID = #{UserID, jdbcType=VARCHAR}
+	</select>
+</mapper>

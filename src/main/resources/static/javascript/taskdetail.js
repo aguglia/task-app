@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-	const updateBtnElements = document.querySelectorAll(".display-detail-btn"); // クラスセレクタを使用
+	const displayBtnElements = document.querySelectorAll(".display-detail-btn"); // クラスセレクタを使用
 
-	updateBtnElements.forEach(button => { // NodeListをループ処理
+	displayBtnElements.forEach(button => { // NodeListをループ処理
 		button.addEventListener('click', function(event) {
 			const taskId = this.getAttribute('data-task-id');
 			if (taskId) {
@@ -24,4 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 		});
 	});
+	
+	const updateBtnElements = document.querySelector('#update');
+	
+	updateBtnElements.addEventListener('click' , event => {
+		
+	})
 });

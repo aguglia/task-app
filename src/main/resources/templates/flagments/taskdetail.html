@@ -6,6 +6,12 @@
 			<div class="text-xl font-semibold" th:text="${taskdetail.taskname}">タスク名</div>
 			<div class="text-sm">
 				<p>担当者: <span th:text="${username}"></span></p>
+				<div th:if="${taskdetail.shareID != null}">
+					<p>共同担当者: </p>
+					<div th:each="share : ${shareID}">
+						<span th:text="${share}"></span>
+					</div>
+				</div>
 				<p>優先度: <span class="ml-2" th:text="${taskdetail.priorityID}"></span></p>
 			</div>
 		</div>
@@ -32,11 +38,15 @@
 		</div>
 		<div class="p-6 border-b">
 			<h2 class="text-lg font-semibold mb-2">小タスク</h2>
+			<div th:each="small : ${tasksmall}">
+				<span th:text="${small.content}"></span>
+			</div>
 			<p class="text-gray-700">（小タスクの情報は TaskModel に含まれていません）</p>
 		</div>
 		<div class="p-6">
 			<h2 class="text-lg font-semibold mb-2">コメント</h2>
 			<p th:text="${taskdetail.coment}" class="text-gray-700"></p>
 		</div>
+		<button class="display-detail-btn bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" th:data-task-id="${task.ID}">登録</button>
 	</div>
 </div>

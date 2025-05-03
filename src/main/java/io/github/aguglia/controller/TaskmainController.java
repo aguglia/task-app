@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import io.github.aguglia.model.LoginModel;
 import io.github.aguglia.model.TaskModel;
+import io.github.aguglia.model.TaskSmallModel;
 import io.github.aguglia.service.TaskNewService;
 import io.github.aguglia.service.TaskRecentyService;
 
@@ -31,6 +32,8 @@ public class TaskmainController {
 		TaskModel taskmodel = new TaskModel();
 		model.addAttribute("taskmodel", taskmodel);
 		model.addAttribute("taskdetail", taskmodel);
+		TaskSmallModel tasksmall = new TaskSmallModel();
+		model.addAttribute("tasksmall", tasksmall);
 		Object userbuf = authentication.getPrincipal();
 		List<TaskModel> tasksmodel = null;
 		if (userbuf instanceof LoginModel user) {
@@ -48,6 +51,8 @@ public class TaskmainController {
 			Model model) {
 		System.out.println("登録テスト1");
 		model.addAttribute("taskmodel", new TaskModel());
+		TaskSmallModel tasksmall = new TaskSmallModel();
+		model.addAttribute("tasksmall", tasksmall);
 		Object userbuf = authentication.getPrincipal();
 		List<TaskModel> tasksmodel = null;
 		if (userbuf instanceof LoginModel user) {

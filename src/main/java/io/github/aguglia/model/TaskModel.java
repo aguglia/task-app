@@ -15,4 +15,5 @@ public class TaskModel {
 	private LocalDate deadlinedate;
 	private String Requiredtime;
 	private String UserID;
+	private String[] ShareID;
 }
