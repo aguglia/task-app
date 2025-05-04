@@ -46,6 +46,8 @@
 				<h2 class="text-xl font-bold mb-4">ここは天気とか日付、ユーザー情報等</h2>
 				<p>ここにメインのコンテンツが入ります。</p>
 				<p>ユーザー名: <span th:text="${username}"></span></p>
+				<p th:text="'本日の天気は：' + ${description}"></p>
+				<p th:text="'本日の気温は：' + ${temp} + '°C'"></p>
 				<p>タスク画面</p>
 			</div>
 			<div class="bg-white rounded-md shadow p-6 mb-2">

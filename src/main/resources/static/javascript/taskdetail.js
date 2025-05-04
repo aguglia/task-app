@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 	});
 	
-	const updateBtnElements = document.querySelector('#update');
+	const updateBtnElements = document.querySelector('#update-button');
 	
 	updateBtnElements.addEventListener('click' , event => {
 		

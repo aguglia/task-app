@@ -2,8 +2,10 @@
 <html xmlns:th=“http://www.thymeleaf.org”>
 <div th:fragment="taskDetails">
 	<div class="max-w-md mx-auto bg-white shadow-md rounded-md overflow-hidden">
+		<p class="text-xl font-semibold">タスク名</p>
 		<div class="bg-green-500 py-4 px-6 flex items-center justify-between">
-			<div class="text-xl font-semibold" th:text="${taskdetail.taskname}">タスク名</div>
+			
+			<input type="text" th:field="*{taskdetail.taskname}" class="text-xl font-semibold w-1/2" />
 			<div class="text-sm">
 				<p>担当者: <span th:text="${username}"></span></p>
 				<div th:if="${taskdetail.shareID != null}">
@@ -17,23 +19,17 @@
 		</div>
 		<div class="p-6 border-b">
 			<h2 class="text-lg font-semibold mb-2">内容</h2>
-			<p th:text="${taskdetail.content}" class="text-gray-700"></p>
+			<textarea th:field="*{taskdetail.content}" class="w-full border rounded p-2"></textarea>
 		</div>
 		<div class="p-6 border-b">
 			<h2 class="text-lg font-semibold mb-2">開始日、期限、見積もり</h2>
 			<div class="flex items-center space-x-4">
-				<div th:if="${taskdetail.startdate != null}">
-					<span class="text-gray-600">開始日:</span>
-					<span th:text="${#temporals.format(taskdetail.startdate, 'yyyy-MM-dd')}"></span>
-				</div>
-				<div th:if="${taskdetail.deadlinedate != null}">
-					<span class="text-gray-600">期限:</span>
-					<span th:text="${#temporals.format(taskdetail.deadlinedate, 'yyyy-MM-dd')}"></span>
-				</div>
-				<div th:if="${taskdetail.Requiredtime != null and taskdetail.Requiredtime != ''}">
-					<span class="text-gray-600">見積もり:</span>
-					<span th:text="${taskdetail.Requiredtime}"></span>
-				</div>
+				<span class="text-gray-600">開始日:</span>
+				<input type="date" th:value="*{taskdetail.startdate}" />
+				<span class="text-gray-600">期限:</span>
+				<input type="date" th:value="*{taskdetail.deadlinedate}" />
+				<span class="text-gray-600">見積もり:</span>
+				<input type="text" th:value="*{taskdetail.Requiredtime}" class="w-20" />
 			</div>
 		</div>
 		<div class="p-6 border-b">
@@ -45,8 +41,9 @@
 		</div>
 		<div class="p-6">
 			<h2 class="text-lg font-semibold mb-2">コメント</h2>
-			<p th:text="${taskdetail.coment}" class="text-gray-700"></p>
+			<textarea th:field="*{taskdetail.coment}" class="w-full border rounded p-2"></textarea>
 		</div>
-		<button class="display-detail-btn bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" th:data-task-id="${task.ID}">登録</button>
+		<button id="update-button" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+			th:data-task-id="${taskdetail.ID}">登録</button>
 	</div>
 </div>
