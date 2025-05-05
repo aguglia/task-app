@@ -75,6 +75,11 @@ public class TaskmainController {
 		String errorMessage = tasknewService.TaskNew(taskmodel);
 		model.addAttribute("errorMessage", errorMessage);
 		model.addAttribute("tasksmodel", tasksmodel);
+		
+		WeatherResponse weatherInfo = weatherResponseService.getWeatherInfo("nagoya");
+		model.addAttribute("description", weatherInfo.getWeather().get(0).getDescription());
+		model.addAttribute("temp", weatherInfo.getMain().getTemp());
+		
 		return "taskmain";
 	}
 }

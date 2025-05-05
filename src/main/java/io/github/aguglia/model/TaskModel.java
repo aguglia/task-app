@@ -10,10 +10,10 @@ public class TaskModel {
 	private String taskname;
 	private String coment;
 	private String content;
-	private String priorityID;
+	private String priority;
 	private LocalDate startdate;
 	private LocalDate deadlinedate;
-	private String Requiredtime;
+	private Integer Requiredtime;
 	private String UserID;
 	private String[] ShareID;
 }

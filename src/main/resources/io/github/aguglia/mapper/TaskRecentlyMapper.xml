@@ -6,22 +6,25 @@
 	<select id="taskRecently" parameterType="java.lang.String"
 		resultType="io.github.aguglia.model.TaskModel">
 		SELECT
-			タスク管理id AS ID,
-			タスク名 AS taskname,
-			開始日 AS startdate,
-			期日 AS deadlinedate,
-			かかる時間 AS Requiredtime,
-			内容 AS content,
-			優先度 AS priorityID
+			tt.タスク管理id AS ID,
+			tt.タスク名 AS taskname,
+			tt.開始日 AS startdate,
+			tt.期日 AS deadlinedate,
+			tt.かかる時間 AS Requiredtime,
+			tt.内容 AS content,
+			tp.優先度名 AS priority
 		FROM
-			t_tasks
+			t_tasks tt
+		INNER JOIN
+			t_priorities tp
+			ON tt.優先度 = tp.優先度ID
 		WHERE
-			完了フラグ = FALSE
-			AND 削除フラグ = FALSE
-			AND ユーザ管理id = #{userID, jdbcType=VARCHAR}
-			AND 期日 >= CURRENT_DATE
+			tt.完了フラグ = FALSE
+			AND tt.削除フラグ = FALSE
+			AND tt.ユーザ管理id = #{userID, jdbcType=VARCHAR}
+			AND tt.期日 >= CURRENT_DATE
 		ORDER BY
-			期日 ASC
+			tt.期日 ASC
 		LIMIT 2
 	</select>
 </mapper>

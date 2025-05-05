@@ -4,17 +4,11 @@
 	<div class="max-w-md mx-auto bg-white shadow-md rounded-md overflow-hidden">
 		<p class="text-xl font-semibold">タスク名</p>
 		<div class="bg-green-500 py-4 px-6 flex items-center justify-between">
-			
+
 			<input type="text" th:field="*{taskdetail.taskname}" class="text-xl font-semibold w-1/2" />
 			<div class="text-sm">
 				<p>担当者: <span th:text="${username}"></span></p>
-				<div th:if="${taskdetail.shareID != null}">
-					<p>共同担当者: </p>
-					<div th:each="share : ${shareID}">
-						<span th:text="${share}"></span>
-					</div>
-				</div>
-				<p>優先度: <span class="ml-2" th:text="${taskdetail.priorityID}"></span></p>
+				<p>優先度: <span class="ml-2" th:text="${taskdetail.priority}"></span></p>
 			</div>
 		</div>
 		<div class="p-6 border-b">
@@ -25,11 +19,11 @@
 			<h2 class="text-lg font-semibold mb-2">開始日、期限、見積もり</h2>
 			<div class="flex items-center space-x-4">
 				<span class="text-gray-600">開始日:</span>
-				<input type="date" th:value="*{taskdetail.startdate}" />
+				<input type="date" id="startdate" th:value="*{taskdetail.startdate}" />
 				<span class="text-gray-600">期限:</span>
-				<input type="date" th:value="*{taskdetail.deadlinedate}" />
+				<input type="date" id="deadlinedate" th:value="*{taskdetail.deadlinedate}" />
 				<span class="text-gray-600">見積もり:</span>
-				<input type="text" th:value="*{taskdetail.Requiredtime}" class="w-20" />
+				<input type="text" th:field="*{taskdetail.requiredtime}" class="w-20" />
 			</div>
 		</div>
 		<div class="p-6 border-b">
@@ -43,7 +37,11 @@
 			<h2 class="text-lg font-semibold mb-2">コメント</h2>
 			<textarea th:field="*{taskdetail.coment}" class="w-full border rounded p-2"></textarea>
 		</div>
-		<button id="update-button" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-			th:data-task-id="${taskdetail.ID}">登録</button>
+		<div class="flex justify-end">
+			<button id="update-button" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+				th:data-task-id="${taskdetail.ID}">登録</button>
+			<button id="modal-close-button"
+				class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 justify-end">閉じる</button>
+		</div>
 	</div>
 </div>

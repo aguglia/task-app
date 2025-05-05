@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.github.aguglia.mapper.TaskUpdateMapper">
+    <update id="TaskUpdate" parameterType="io.github.aguglia.model.TaskModel">
+        UPDATE t_tasks
+        SET
+            タスク名 = #{taskname},
+            開始日 = #{startdate},
+            期日 = #{deadlinedate},
+            かかる時間 = #{Requiredtime},
+            内容 = #{content},
+            コメント = #{coment}
+        WHERE
+            タスク管理ID = #{ID}
+    </update>
+
+</mapper>

@@ -3,8 +3,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	displayBtnElements.forEach(button => { // NodeListをループ処理
 		button.addEventListener('click', function(event) {
+			console.log('click!');
 			const taskId = this.getAttribute('data-task-id');
 			if (taskId) {
+				const overlayElement = document.querySelector('#overlay');
+				overlayElement.classList.remove('hidden');
+
+				const modalElement = document.querySelector('#modal');
+				modalElement.classList.add('show');
+				modalElement.classList.remove('hide');
+
 				fetch(`/task/items?ID=${taskId}`)
 					.then(res => res.text())
 					.then(html => {
