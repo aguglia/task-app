@@ -47,6 +47,8 @@ public class TaskmainController {
 		}
 
 		model.addAttribute("tasksmodel", tasksmodel);
+		
+		model.addAttribute("alltasksmodel", tasksmodel);
 
 		WeatherResponse weatherInfo = weatherResponseService.getWeatherInfo("nagoya");
 		model.addAttribute("description", weatherInfo.getWeather().get(0).getDescription());

@@ -37,11 +37,11 @@
 			<h2 class="text-lg font-semibold mb-2">コメント</h2>
 			<textarea th:field="*{taskdetail.coment}" class="w-full border rounded p-2"></textarea>
 		</div>
-		<div class="flex justify-end">
-			<button id="update-button" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-				th:data-task-id="${taskdetail.ID}">登録</button>
-			<button id="modal-close-button"
-				class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 justify-end">閉じる</button>
+		<div class="flex justify-between">
+		    <button id="update-button" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+		        th:data-task-id="${taskdetail.ID}">登録</button>
+		    <button id="modal-close-button"
+		        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">閉じる</button>
 		</div>
 	</div>
 </div>

@@ -11,7 +11,8 @@
             期日 = #{deadlinedate},
             かかる時間 = #{Requiredtime},
             内容 = #{content},
-            コメント = #{coment}
+            コメント = #{coment},
+            優先度 = (SELECT 優先度ID FROM t_priorities WHERE 優先度名 = #{priority})
         WHERE
             タスク管理ID = #{ID}
     </update>
