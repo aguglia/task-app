@@ -11,9 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
 				const contentTextarea = flagmentAreaElement.querySelector('#content'); // 確認されたIDを使用
 				const startDateInput = flagmentAreaElement.querySelector('#startdate'); // 例
 				const deadlineDateInput = flagmentAreaElement.querySelector('#deadlinedate'); // 例 (必要に応じて調整)
-				const requiredTimeInput = flagmentAreaElement.querySelector('#requiredtime'); // 例
+				const requiredTimehourInput = flagmentAreaElement.querySelector('#Requiredtimehour'); // 例
+				const requiredTimeminInput = flagmentAreaElement.querySelector('#Requiredtimemin'); // 例
 				const commentTextarea = flagmentAreaElement.querySelector('#coment'); // 例
-				const prioritySpan = flagmentAreaElement.querySelector('span[class*="priority-"]'); // クラス名で特定する例
+				const completecheckbox = flagmentAreaElement.querySelector('#complete'); // 例
+				const prioritySpan = flagmentAreaElement.querySelector('#priority'); // クラス名で特定する例
 
 				if (!taskId) {
 					console.error('Task ID is missing!');
@@ -26,9 +28,11 @@ document.addEventListener('DOMContentLoaded', () => {
 					content: contentTextarea ? contentTextarea.value : null,
 					startdate: startDateInput ? startDateInput.value : null,
 					deadlinedate: deadlineDateInput ? deadlineDateInput.value : null,
-					Requiredtime: requiredTimeInput ? requiredTimeInput.value : null,
+					Requiredtimehour: requiredTimehourInput ? requiredTimehourInput.value : 0,
+					Requiredtimemin: requiredTimeminInput ? requiredTimeminInput.value : 0,
 					coment: commentTextarea ? commentTextarea.value : null,
-					priority: prioritySpan ? prioritySpan.textContent : null
+					complete: completecheckbox ? completecheckbox.checked : false,
+					priority: prioritySpan ? prioritySpan.value : null
 				};
 
 				const queryString = new URLSearchParams();
@@ -37,8 +41,10 @@ document.addEventListener('DOMContentLoaded', () => {
 				queryString.append('content', updatedTaskData.content);
 				queryString.append('startdate', updatedTaskData.startdate);
 				queryString.append('deadlinedate', updatedTaskData.deadlinedate);
-				queryString.append('Requiredtime', updatedTaskData.Requiredtime);
+				queryString.append('Requiredtimehour', updatedTaskData.Requiredtimehour);
+				queryString.append('Requiredtimemin', updatedTaskData.Requiredtimemin);
 				queryString.append('coment', updatedTaskData.coment);
+				queryString.append('complete', updatedTaskData.complete);
 				queryString.append('priority', updatedTaskData.priority);
 
 				fetch(`/tasks/update?${queryString.toString()}`) // URL パラメータを構築

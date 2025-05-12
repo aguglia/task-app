@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>トップ</title>
+	<title>ユーザー情報設定</title>
 	<link rel="stylesheet" th:href="@{/css/output.css}">
 </head>
 
@@ -13,9 +13,10 @@
 			<div>
 				<div class="font-bold text-lg mb-4">メニュー</div>
 				<nav class="space-y-2">
-					<a th:href="@{/}" class="bg-blue-500 text-white rounded block py-2 px-4 rounded hover:bg-gray-300">ホーム</a>
+					<a th:href="@{/}" class="block py-2 px-4 rounded hover:bg-gray-300">ホーム</a>
 					<a th:href="@{/task}" class="block py-2 px-4 rounded hover:bg-gray-300">タスク</a>
-					<a th:href="@{/usersetting}" class="block py-2 px-4 rounded hover:bg-gray-300">ユーザ情報の登録</a>
+					<a th:href="@{/usersetting}" class="bg-blue-500 text-white rounded block py-2 px-4 rounded hover:bg-gray-300">ユーザ情報の登録</a>
+					<a th:href="@{/information}" class="block py-2 px-4 rounded hover:bg-gray-300">インフォメーション</a>
 					<a th:href="@{/login?logout}" class="block py-2 px-4 rounded hover:bg-gray-300">ログアウト</a>
 				</nav>
 			</div>
@@ -33,18 +34,31 @@
 							d="M4 6h16M4 12h16M4 18h16"></path>
 					</svg>
 				</button>
-				<div class="font-bold text-lg">メイン画面</div>
+				<div class="font-bold text-lg">ユーザ情報</div>
 				<div></div>
 			</div>
 		</header>
 
 		<main class="p-4 ">
 			<div class="bg-white rounded-md shadow p-6 mb-2">
-				<h2 class="text-xl font-bold mb-4">ここは天気とか日付、ユーザー情報等</h2>
-				<p>ユーザー名: <span th:text="${username}"></span></p>
-				<p th:text="'本日の天気は：' + ${description}"></p>
-				<p th:text="'本日の気温は：' + ${temp} + '°C'"></p>
-				<p>メイン画面</p>
+				<h2 class="text-xl font-bold mb-4">ユーザ情報更新</h2>
+				<div th:if="${errormessage ne null}" th:text="${errormessage}"></div>
+				<form th:action="@{/usersetting}" th:method="post" th:object="${usermodel}" class="space-y-4">
+					<div th:if="${errorMessage ne null}" th:text="${errorMessage}" class="text-red-500"></div>
+					<div>
+						<label for="username" class="block text-gray-700 text-sm font-bold mb-2">ユーザー名:</label>
+						<input type="text" id="username" th:field="*{username}"
+							class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+					</div>
+					<div>
+						<label for="adress" class="block text-gray-700 text-sm font-bold mb-2">住所:</label>
+						<input type="text" id="adress" th:field="*{adress}"
+							class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+					</div>
+					<input type="hidden" th:field="*{userID}" />
+					<button type="submit"
+						class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">更新</button>
+				</form>
 			</div>
 		</main>
 
@@ -63,9 +77,10 @@
 						</button>
 					</div>
 					<nav class="space-y-2">
-						<a th:href="@{/}" class="bg-blue-500 text-white rounded block py-2 px-4 rounded hover:bg-gray-300">ホーム</a>
+						<a th:href="@{/}" class="block py-2 px-4 rounded hover:bg-gray-300">ホーム</a>
 						<a th:href="@{/task}" class="block py-2 px-4 rounded hover:bg-gray-300">タスク</a>
-						<a th:href="@{/usersetting}" class="block py-2 px-4 rounded hover:bg-gray-300">ユーザ情報の登録</a>
+						<a th:href="@{/usersetting}" class="bg-blue-500 text-white rounded block py-2 px-4 rounded hover:bg-gray-300">ユーザ情報の登録</a>
+						<a th:href="@{/information}" class="block py-2 px-4 rounded hover:bg-gray-300">インフォメーション</a>
 						<a th:href="@{/login?logout}" class="block py-2 px-4 rounded hover:bg-gray-300">ログアウト</a>
 					</nav>
 				</div>

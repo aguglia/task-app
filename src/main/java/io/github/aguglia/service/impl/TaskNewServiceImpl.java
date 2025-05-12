@@ -18,10 +18,8 @@ public class TaskNewServiceImpl implements TaskNewService {
 		// TODO 自動生成されたメソッド・スタブ
 		try {
 			tasknewMapper.TaskNew(taskmodel);
-			System.out.println("完了");
 			return "登録完了"; // 登録成功後、ログイン画面へリダイレクト
 		} catch (Exception e) {
-			System.out.println("失敗");
 			return "登録処理中にエラーが発生しました。";
 		}
 	}

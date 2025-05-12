@@ -8,4 +8,5 @@ import io.github.aguglia.model.TaskSmallModel;
 public interface TaskDetailService {
 	public TaskModel TaskDetail(String taskID);
 	public List<TaskSmallModel> TaskSmall(String taskID);
+	public List<String> Priorityget();
 }

@@ -45,6 +45,10 @@ public class TaskDetailController {
 		List<TaskSmallModel> tasksmall = taskDetailService.TaskSmall(taskId);
 		model.addAttribute("tasksmall", tasksmall);
 
+		//優先度
+		List<String> priority = taskDetailService.Priorityget();
+		model.addAttribute("priorityList", priority);
+
 		return "flagments/taskdetail :: taskDetails"; // "fragments/task-item.html" の "taskDetails" フラグメントを返す
 	}
 
@@ -55,8 +59,10 @@ public class TaskDetailController {
 			@RequestParam(value = "content", required = false) String content,
 			@RequestParam(value = "startdate", required = false) String startdate,
 			@RequestParam(value = "deadlinedate", required = false) String deadlinedate,
-			@RequestParam(value = "Requiredtime", required = false) String requiredTime,
+			@RequestParam(value = "Requiredtimehour", required = false) Integer requiredTimehour,
+			@RequestParam(value = "Requiredtimemin", required = false) Integer requiredTimemin,
 			@RequestParam(value = "coment", required = false) String coment,
+			@RequestParam(value = "complete", required = false) boolean complete,
 			@RequestParam(value = "priority", required = false) String priority,
 			Authentication authentication,
 			Model model) {
@@ -69,6 +75,7 @@ public class TaskDetailController {
 		updatedTask.setID(id);
 		updatedTask.setTaskname(taskname);
 		updatedTask.setContent(content);
+		updatedTask.setComplete(complete);
 		// 開始日の処理
 		if (startdate != null && !startdate.isEmpty()) {
 			try {
@@ -94,31 +101,27 @@ public class TaskDetailController {
 		} else {
 			updatedTask.setDeadlinedate(null);
 		}
-		if (requiredTime != null && !requiredTime.isEmpty()) {
-	        try {
-	            updatedTask.setRequiredtime(Integer.parseInt(requiredTime));
-	        } catch (NumberFormatException e) {
-	            System.err.println("見積もり時間の解析エラー: " + requiredTime);
-	            // 必要に応じてエラーハンドリング (ユーザーにエラーメッセージを表示するなど)
-	            updatedTask.setRequiredtime(null); // 解析失敗時は null をセット
-	        }
-	    } else {
-	        updatedTask.setRequiredtime(null);
-	    }
+		updatedTask.setRequiredtimehour(requiredTimehour);
+		updatedTask.setRequiredtimemin(requiredTimemin);
 		updatedTask.setComent(coment);
 		updatedTask.setPriority(priority);
 
-		taskupdateService.updateTask(updatedTask); // データベースを更新
-		
+		String Message = taskupdateService.updateTask(updatedTask); // データベースを更新
+		model.addAttribute("errormessage", Message);
+
 		TaskModel taskdetail = taskDetailService.TaskDetail(id);
 
 		model.addAttribute("taskdetail", taskdetail);
 		String username = authentication.getName();
 		model.addAttribute("username", username);
 		// 必要に応じて、共同担当者 (shareID) や小タスク (tasksmall) の情報を取得して model に追加
-		
-		TaskSmallModel tasksmall = new TaskSmallModel();
+
+		List<TaskSmallModel> tasksmall = taskDetailService.TaskSmall(id);
 		model.addAttribute("tasksmall", tasksmall);
+
+		//優先度
+		List<String> prioritylist = taskDetailService.Priorityget();
+		model.addAttribute("priorityList", prioritylist);
 
 		return "flagments/taskdetail :: taskDetails"; // Thymeleaf のフラグメントを返す
 	}

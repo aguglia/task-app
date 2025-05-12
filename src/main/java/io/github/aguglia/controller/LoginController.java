@@ -18,17 +18,32 @@ public class LoginController {
 	
 	@GetMapping("login")
 	public String login() {
-
-		System.out.println("first");
 		
 		return "login";
 	}
 	
 	@GetMapping("/")
 	public String loginUser(LoginModel login,Model model, Authentication authentication) {
-		WeatherResponse weatherInfo = weatherResponseService.getWeatherInfo("nagoya");
-		model.addAttribute("description", weatherInfo.getWeather().get(0).getDescription());
-		model.addAttribute("temp", weatherInfo.getMain().getTemp());
+		
+		
+		Object userbuf = authentication.getPrincipal();
+		LoginModel userData = null;
+		if (userbuf instanceof LoginModel user) {
+			userData = user;
+		}
+		if (userData.getAdress() != null) {
+			try {
+				WeatherResponse weatherInfo = weatherResponseService.getWeatherInfo(userData.getAdress());
+				model.addAttribute("description", weatherInfo.getWeather().get(0).getDescription());
+				model.addAttribute("temp", weatherInfo.getMain().getTemp());
+				}catch(Exception e){
+					model.addAttribute("description", "住所設定ミス");
+					model.addAttribute("temp", "住所設定ミス");
+				}
+		} else {
+			model.addAttribute("description", "住所未設定");
+			model.addAttribute("temp", "住所未設定");
+		}
 		String username = authentication.getName();
 		model.addAttribute("username", username);
 		return "top";

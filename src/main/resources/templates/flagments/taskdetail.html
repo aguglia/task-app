@@ -2,14 +2,25 @@
 <html xmlns:th=“http://www.thymeleaf.org”>
 <div th:fragment="taskDetails">
 	<div class="max-w-md mx-auto bg-white shadow-md rounded-md overflow-hidden">
+		<div th:if="${errormessage ne null}" th:text="${errormessage}"></div>
 		<p class="text-xl font-semibold">タスク名</p>
 		<div class="bg-green-500 py-4 px-6 flex items-center justify-between">
 
 			<input type="text" th:field="*{taskdetail.taskname}" class="text-xl font-semibold w-1/2" />
 			<div class="text-sm">
 				<p>担当者: <span th:text="${username}"></span></p>
-				<p>優先度: <span class="ml-2" th:text="${taskdetail.priority}"></span></p>
+				<p>優先度: <select id="priority" th:field="*{taskdetail.priority}"
+						class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+						<option value="">-- 選択してください --</option>
+						<option th:each="priority : ${priorityList}" th:value="${priority}" th:text="${priority}"
+							th:selected="${taskdetail.priority == priority}"></option>
+					</select></p>
 			</div>
+		</div>
+		<div class="flex items-center">
+			<input type="checkbox" id="complete" th:checked="${taskdetail.complete}" class="mr-2 leading-tight" />
+			<label for="complete" class="text-gray-700 text-sm font-bold"
+				th:text="${taskdetail.complete ? '完了' : '未完了'}">完了</label>
 		</div>
 		<div class="p-6 border-b">
 			<h2 class="text-lg font-semibold mb-2">内容</h2>
@@ -23,7 +34,12 @@
 				<span class="text-gray-600">期限:</span>
 				<input type="date" id="deadlinedate" th:value="*{taskdetail.deadlinedate}" />
 				<span class="text-gray-600">見積もり:</span>
-				<input type="text" th:field="*{taskdetail.requiredtime}" class="w-20" />
+				<div class="flex items-center space-x-2">
+					<input type="number" min="0" max="999" th:field="*{taskdetail.Requiredtimehour}"
+						class="w-24"></input><span class="text-gray-600">時間</span>
+					<input type="number" min="0" max="60" th:field="*{taskdetail.Requiredtimemin}"
+						class="w-24"></input><span class="text-gray-600">分</span>
+				</div>
 			</div>
 		</div>
 		<div class="p-6 border-b">
@@ -38,10 +54,10 @@
 			<textarea th:field="*{taskdetail.coment}" class="w-full border rounded p-2"></textarea>
 		</div>
 		<div class="flex justify-between">
-		    <button id="update-button" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-		        th:data-task-id="${taskdetail.ID}">登録</button>
-		    <button id="modal-close-button"
-		        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">閉じる</button>
+			<button id="update-button" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+				th:data-task-id="${taskdetail.ID}">登録</button>
+			<button id="modal-close-button"
+				class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">閉じる</button>
 		</div>
 	</div>
 </div>

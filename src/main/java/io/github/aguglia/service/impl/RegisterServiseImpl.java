@@ -24,14 +24,12 @@ public class RegisterServiseImpl implements RegisterService{
 		//登録処理
 		
         if (!registerModel.getPassword().equals(registerModel.getConfirmPassword())) {
-            System.out.println("未一致");
             return "パスワードと確認用パスワードが一致しません。";
         }
 
         // ユーザー名が既に存在するか確認 (必要に応じて)
         LoginModel existingUser = registerMapper.getRegisterUser(registerModel.getEmail());
         if (existingUser != null) {
-            System.out.println("既存");
             return "既に登録されています。";
         }
 //
@@ -50,10 +48,8 @@ public class RegisterServiseImpl implements RegisterService{
         // データベースに登録
         try {
         	registerMapper.RegisterUser(newUser);
-        	System.out.println("完了");
             return null; // 登録成功後、ログイン画面へリダイレクト
         } catch (Exception e) {
-            System.out.println("失敗");
             return "登録処理中にエラーが発生しました。";
         }
 	}

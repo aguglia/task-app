@@ -24,8 +24,6 @@ public class LoginServiceImpl implements LoginService , UserDetailsService{
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		// TODO 自動生成されたメソッド・スタブ
-		System.out.println(username);
 		return mapper.getLoginUser(username);
 	}
 

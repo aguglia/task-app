@@ -5,27 +5,27 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import io.github.aguglia.mapper.TaskRecentlyMapper;
+import io.github.aguglia.mapper.TaskAllMapper;
 import io.github.aguglia.model.TaskModel;
-import io.github.aguglia.service.TaskRecentyService;
+import io.github.aguglia.service.TaskAllService;
 import io.github.aguglia.utils.DateUtil;
 
 @Service
-public class TaskRecentyServiceImpl implements TaskRecentyService {
+public class TaskAllServiceImpl implements TaskAllService {
 
 	@Autowired
-	private TaskRecentlyMapper taskRecentlyMapper;
+	private TaskAllMapper taskAllMapper;
 
 	@Override
-	public List<TaskModel> taskRecenty(String Userid) {
-
-		List<TaskModel> tasks = taskRecentlyMapper.taskRecently(Userid);
-		for (TaskModel task : tasks) {
+	public List<TaskModel> taskAll(String Userid) {
+		// TODO 自動生成されたメソッド・スタブ
+		List<TaskModel> alltask = taskAllMapper.taskAll(Userid);
+		for (TaskModel task : alltask) {
 			List<Integer> time = DateUtil.minuteToHour(task.getRequiredtime());
 			task.setRequiredtimehour(time.get(0));
 			task.setRequiredtimemin(time.get(1));
 		}
-		return tasks;
+		return alltask;
 	}
 
 }

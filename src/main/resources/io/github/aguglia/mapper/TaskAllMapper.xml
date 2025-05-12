@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.github.aguglia.mapper.TaskAllMapper">
+	<select id="taskAll" parameterType="java.lang.String"
+		resultType="io.github.aguglia.model.TaskModel">
+		SELECT
+			tt.タスク管理id AS ID,
+			tt.タスク名 AS taskname,
+			tt.開始日 AS startdate,
+			tt.期日 AS deadlinedate,
+			tt.かかる時間 AS Requiredtime,
+			tt.内容 AS content,
+			tp.優先度名 AS priority,
+			tt.完了フラグ AS complete
+		FROM
+			t_tasks tt
+		LEFT JOIN
+			t_priorities tp
+			ON tt.優先度 = tp.優先度ID
+		WHERE
+			tt.削除フラグ = FALSE
+			AND tt.ユーザ管理id = #{userID, jdbcType=VARCHAR}
+		ORDER BY
+			tt.完了フラグ ASC, tt.期日 ASC;
+	</select>
+</mapper>

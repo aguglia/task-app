@@ -26,10 +26,9 @@
 				<div class="font-bold text-lg mb-4">メニュー</div>
 				<nav class="space-y-2">
 					<a th:href="@{/}" class="block py-2 px-4 rounded hover:bg-gray-300">ホーム</a>
-					<a th:href="@{/task}" class="block py-2 px-4 rounded hover:bg-gray-300">タスク</a>
-					<a href="#" class="block py-2 px-4 rounded hover:bg-gray-300">ポートフォリオ</a>
-					<a href="#" class="block py-2 px-4 rounded hover:bg-gray-300">会社概要</a>
-					<a href="#" class="block py-2 px-4 rounded hover:bg-gray-300">お問い合わせ</a>
+					<a th:href="@{/task}" class="bg-blue-500 text-white rounded block py-2 px-4 rounded hover:bg-gray-300">タスク</a>
+					<a th:href="@{/usersetting}" class="block py-2 px-4 rounded hover:bg-gray-300">ユーザ情報の登録</a>
+					<a th:href="@{/information}" class="block py-2 px-4 rounded hover:bg-gray-300">インフォメーション</a>
 					<a th:href="@{/login?logout}" class="block py-2 px-4 rounded hover:bg-gray-300">ログアウト</a>
 				</nav>
 			</div>
@@ -47,7 +46,7 @@
 							d="M4 6h16M4 12h16M4 18h16"></path>
 					</svg>
 				</button>
-				<div class="font-bold text-lg">タイトル</div>
+				<div class="font-bold text-lg">タスク画面</div>
 				<div></div>
 			</div>
 		</header>
@@ -65,7 +64,6 @@
 				<h2 class="text-xl font-bold mb-4">直近タスク</h2>
 				<div th:replace="~{flagments/taskrecently :: recently}"></div>
 				<p>ここにメインのコンテンツが入ります。</p>
-				<p>第二要素</p>
 			</div>
 			<div class="bg-white rounded-md shadow p-6 mb-2">
 				<h2 class="text-xl font-bold mb-4">新規登録</h2>
@@ -99,16 +97,13 @@
 						</button>
 					</div>
 				</form>
-				<p>第三要素</p>
 			</div>
 			<div class="bg-white rounded-md shadow p-6 mb-2">
 				<h2 class="text-xl font-bold mb-4">タスク一覧</h2>
 
-				
+
 				<div th:replace="~{flagments/taskall :: taskall}"></div>
 
-				<p>ここにメインのコンテンツが入ります。</p>
-				<p>第四要素</p>
 			</div>
 
 
@@ -130,11 +125,10 @@
 						</button>
 					</div>
 					<nav class="space-y-2">
-						<a href="#" class="block py-2 px-4 rounded hover:bg-gray-300">ホーム</a>
-						<a href="#" class="block py-2 px-4 rounded hover:bg-gray-300">サービス</a>
-						<a href="#" class="block py-2 px-4 rounded hover:bg-gray-300">ポートフォリオ</a>
-						<a href="#" class="block py-2 px-4 rounded hover:bg-gray-300">会社概要</a>
-						<a href="#" class="block py-2 px-4 rounded hover:bg-gray-300">お問い合わせ</a>
+						<a th:href="@{/}" class="block py-2 px-4 rounded hover:bg-gray-300">ホーム</a>
+						<a th:href="@{/task}" class="bg-blue-500 text-white rounded block py-2 px-4 rounded hover:bg-gray-300">タスク</a>
+						<a th:href="@{/usersetting}" class="block py-2 px-4 rounded hover:bg-gray-300">ユーザ情報の登録</a>
+						<a th:href="@{/information}" class="block py-2 px-4 rounded hover:bg-gray-300">インフォメーション</a>
 						<a th:href="@{/login?logout}" class="block py-2 px-4 rounded hover:bg-gray-300">ログアウト</a>
 					</nav>
 				</div>

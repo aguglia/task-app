@@ -13,6 +13,7 @@ public class LoginModel implements UserDetails {
 	String username;
 	String password;
 	String email;
+	String adress;
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO 自動生成されたメソッド・スタブ

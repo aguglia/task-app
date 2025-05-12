@@ -8,6 +8,7 @@
 			ユーザ管理id AS userID,
 			ユーザ名 AS username,
 			メアド AS email,
+			住所 AS adress,
 			パスワード AS password
 		FROM
 			t_users

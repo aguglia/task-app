@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.github.aguglia.mapper.UserSettingMapper">
+	<select id="GetUser" parameterType="java.lang.String"
+		resultType="io.github.aguglia.model.LoginModel">
+		SELECT
+			ユーザ管理id AS userID,
+			ユーザ名 AS username,
+			メアド AS email,
+			住所 AS adress,
+			パスワード AS password
+		FROM
+			t_users
+		WHERE
+			ユーザ管理id = #{userID, jdbcType=VARCHAR}
+	</select>
+	<update id="SetUser"
+		parameterType="io.github.aguglia.model.TaskModel">
+		UPDATE t_users
+		SET
+			住所 = #{adress},
+			ユーザ名 = #{username}
+		WHERE
+			ユーザ管理id = #{userID}
+	</update>
+
+</mapper>

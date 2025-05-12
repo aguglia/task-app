@@ -2,6 +2,7 @@ CREATE TABLE t_users (
     管理通番 SERIAL PRIMARY KEY,
     ユーザ管理ID CHAR(12) UNIQUE,
     ユーザ名 VARCHAR(10),
+    住所 VARCHAR(100),
     パスワード VARCHAR(100),
     メアド VARCHAR(50) UNIQUE
 );

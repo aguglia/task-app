@@ -14,6 +14,10 @@ public class TaskModel {
 	private LocalDate startdate;
 	private LocalDate deadlinedate;
 	private Integer Requiredtime;
+	private Integer Requiredtimemin;
+	private Integer Requiredtimehour;
 	private String UserID;
 	private String[] ShareID;
+	private boolean complete;
+	private boolean del;
 }
