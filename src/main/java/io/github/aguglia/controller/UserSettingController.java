@@ -29,7 +29,7 @@ public class UserSettingController {
 		}
 		LoginModel usermodel = userSettingService.userget(userData.getUserID());
 		model.addAttribute("usermodel", usermodel);
-		return "/usersetting";
+		return "usersetting";
 	}
 	
 	@PostMapping("/usersetting")
@@ -46,7 +46,7 @@ public class UserSettingController {
 		SecurityContextHolder.getContext().setAuthentication(newAuth);
 		model.addAttribute("errormessage", Message);
 		model.addAttribute("usermodel", usermodel);
-		return "/usersetting";
+		return "usersetting";
 		
 	}
 }
