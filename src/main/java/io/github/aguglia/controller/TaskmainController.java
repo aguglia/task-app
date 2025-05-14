@@ -88,7 +88,9 @@ public class TaskmainController {
 			Authentication authentication,
 			Model model) {
 		System.out.println("登録テスト1");
-		model.addAttribute("taskmodel", new TaskModel());
+		TaskModel sendtaskmodel = new TaskModel();
+		model.addAttribute("taskmodel", sendtaskmodel);
+		model.addAttribute("taskdetail", sendtaskmodel);
 		TaskSmallModel tasksmall = new TaskSmallModel();
 		model.addAttribute("tasksmall", tasksmall);
 		Object userbuf = authentication.getPrincipal();
