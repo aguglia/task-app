@@ -87,7 +87,6 @@ public class TaskmainController {
 	public String taskadd(@ModelAttribute TaskModel taskmodel,
 			Authentication authentication,
 			Model model) {
-		System.out.println("登録テスト1");
 		TaskModel sendtaskmodel = new TaskModel();
 		model.addAttribute("taskmodel", sendtaskmodel);
 		model.addAttribute("taskdetail", sendtaskmodel);

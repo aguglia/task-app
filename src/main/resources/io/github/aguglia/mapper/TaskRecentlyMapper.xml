@@ -15,7 +15,7 @@
 			tp.優先度名 AS priority
 		FROM
 			t_tasks tt
-		INNER JOIN
+		LEFT JOIN
 			t_priorities tp
 			ON tt.優先度 = tp.優先度ID
 		WHERE
