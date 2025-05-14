@@ -53,21 +53,17 @@
 
 		<main class="p-4 min-h-full bg-gray-100">
 			<div class="bg-white rounded-md shadow p-6 mb-2">
-				<h2 class="text-xl font-bold mb-4">ここは天気とか日付、ユーザー情報等</h2>
-				<p>ここにメインのコンテンツが入ります。</p>
+				<h2 class="text-xl font-bold mb-4">タスク画面</h2>
 				<p>ユーザー名: <span th:text="${username}"></span></p>
 				<p th:text="'本日の天気は：' + ${description}"></p>
 				<p th:text="'本日の気温は：' + ${temp} + '°C'"></p>
-				<p>タスク画面</p>
 			</div>
 			<div class="bg-white rounded-md shadow p-6 mb-2">
 				<h2 class="text-xl font-bold mb-4">直近タスク</h2>
 				<div th:replace="~{flagments/taskrecently :: recently}"></div>
-				<p>ここにメインのコンテンツが入ります。</p>
 			</div>
 			<div class="bg-white rounded-md shadow p-6 mb-2">
 				<h2 class="text-xl font-bold mb-4">新規登録</h2>
-				<p>登録は名前、開始日、終了日、内容</p>
 				<form th:action="@{/task}" method="POST" th:object="${taskmodel}">
 					<div th:if="${errorMessage ne null}" th:text="${errorMessage}"></div>
 					<div class="flex items-center">
